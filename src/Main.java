@@ -118,4 +118,15 @@ public class Main {
 
     }
 
+    private static String padBinaryString(String binaryString) {
+        int remainder = binaryString.length() % 8;
+
+        StringBuilder zeros = new StringBuilder();
+        for (int i = (8 - remainder); i > 0; i--) {
+            zeros.append('0');
+        }
+
+        return zeros + binaryString;
+    }
+
 }
