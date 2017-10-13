@@ -132,14 +132,14 @@ public class Main {
 
     private static BigInteger permute(BigInteger bigint) {
         String binaryString = padBinaryString(bigint.toString(2));
-        String permutedString = "";
+        StringBuilder permutedString = new StringBuilder();
 
         for (int i = 0; i < initial_key_permutation.length; i++) {
             //permutedString += binaryString.charAt(initial_key_permutation.length - initial_key_permutation[i]);// Currently, bit 0 is on the left. Bit 0 should be on the right
-            permutedString += binaryString.charAt(initial_key_permutation[i] - 1);
+            permutedString.append(binaryString.charAt(initial_key_permutation[i] - 1));
         }
 
-        return new BigInteger(permutedString, 2);
+        return new BigInteger(permutedString.toString(), 2);
     }
 
     private static String padBinaryString(String binaryString) {
