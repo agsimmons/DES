@@ -24,7 +24,7 @@ public class Main {
                 61, 53, 45, 37, 29, 21, 13, 5,
                 63, 55, 47, 39, 31, 23, 15, 7};
 
-    static int key_shift_sizes[] = {-1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
+    static int key_shift_sizes[] = {1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
 
     static int sub_key_permutation[]
             = {14, 17, 11, 24, 1, 5,
@@ -143,7 +143,6 @@ public class Main {
         StringBuilder permutedString = new StringBuilder();
 
         for (int i = 0; i < initial_key_permutation.length; i++) {
-            //permutedString += binaryString.charAt(initial_key_permutation.length - initial_key_permutation[i]);// Currently, bit 0 is on the left. Bit 0 should be on the right
             permutedString.append(binaryString.charAt(initial_key_permutation[i] - 1));
         }
 
