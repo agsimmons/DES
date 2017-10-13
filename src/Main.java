@@ -153,4 +153,21 @@ public class Main {
         return zeros + binaryString;
     }
 
+    private static String padToLength(String stringToPad, int length, char paddingCharacter) {
+
+        if (stringToPad.length() >= length) {
+            return stringToPad;
+        }
+
+        int lengthDifference = length - stringToPad.length();
+        StringBuilder returnString = new StringBuilder(stringToPad);
+
+        for (int i = 0; i < lengthDifference; i++) {
+            returnString.insert(0, paddingCharacter);
+        }
+
+        return returnString.toString();
+
+    }
+
 }
