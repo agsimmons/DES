@@ -128,6 +128,14 @@ public class Main {
 
         key = permute(key);
         System.out.println("Permuted Key: " + padBinaryString(key.toString(2)));
+        
+        String permutedKey = padToLength(key.toString(2), 56, '0');
+        System.out.println("Permuted Key (Length of 56 Bits): " + permutedKey);
+        
+        String leftKeyHalf = permutedKey.substring(0, 28);
+        String rightKeyHalf = permutedKey.substring(28, 56);
+        System.out.println("Left Key Half : " + leftKeyHalf);
+        System.out.println("Right Key Half: " + rightKeyHalf);
     }
 
     private static BigInteger permute(BigInteger bigint) {
