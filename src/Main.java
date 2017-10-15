@@ -176,5 +176,13 @@ public class Main {
         return returnString.toString();
 
     }
+    
+    private static String leftShift(String stringToShift, int shiftBy) {
+        
+        shiftBy = shiftBy % stringToShift.length();
+        
+        return stringToShift.substring(shiftBy) + stringToShift.substring(0, shiftBy);
+        
+    }
 
 }
