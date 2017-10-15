@@ -126,8 +126,8 @@ public class Main {
         System.out.println("Key (Hex): " + key.toString());
         System.out.println("Key (Binary): " + padBinaryString(key.toString(2)));
 
-        key = permute(key);
-        System.out.println("Permuted Key: " + padBinaryString(key.toString(2)));
+        key = permute(key, initial_key_permutation);
+        System.out.println("Permuted Key: " + padToLength(key.toString(2), 56, '0'));
         
         String permutedKey = padToLength(key.toString(2), 56, '0');
         System.out.println("Permuted Key (Length of 56 Bits): " + permutedKey);
@@ -146,17 +146,33 @@ public class Main {
             CBlocks[i] = leftShift(CBlocks[i-1], key_shift_sizes[i-1]);
             DBlocks[i] = leftShift(DBlocks[i-1], key_shift_sizes[i-1]);
         }
+        
+        String KBlocks[] = new String[16];
+        for (int i = 1; i < 17; i++) {
+            KBlocks[i - 1] = permute(CBlocks[i] + DBlocks[i], sub_key_permutation);
+        }
+
     }
 
-    private static BigInteger permute(BigInteger bigint) {
+    private static BigInteger permute(BigInteger bigint, int permutationTable[]) {
         String binaryString = padBinaryString(bigint.toString(2));
         StringBuilder permutedString = new StringBuilder();
 
-        for (int i = 0; i < initial_key_permutation.length; i++) {
-            permutedString.append(binaryString.charAt(initial_key_permutation[i] - 1));
+        for (int i = 0; i < permutationTable.length; i++) {
+            permutedString.append(binaryString.charAt(permutationTable[i] - 1));
         }
 
         return new BigInteger(permutedString.toString(), 2);
+    }
+    
+    private static String permute(String stringToPermute, int permutationTable[]) {
+        StringBuilder permutedString = new StringBuilder();
+
+        for (int i = 0; i < permutationTable.length; i++) {
+            permutedString.append(stringToPermute.charAt(permutationTable[i] - 1));
+        }
+
+        return permutedString.toString();
     }
 
     private static String padBinaryString(String binaryString) {
