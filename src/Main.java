@@ -136,6 +136,16 @@ public class Main {
         String rightKeyHalf = permutedKey.substring(28, 56);
         System.out.println("Left Key Half : " + leftKeyHalf);
         System.out.println("Right Key Half: " + rightKeyHalf);
+        
+        String CBlocks[] = new String[17];
+        String DBlocks[] = new String[17];
+        CBlocks[0] = leftKeyHalf;
+        DBlocks[0] = rightKeyHalf;
+        
+        for (int i = 1; i < 17; i++) {
+            CBlocks[i] = leftShift(CBlocks[i-1], key_shift_sizes[i-1]);
+            DBlocks[i] = leftShift(DBlocks[i-1], key_shift_sizes[i-1]);
+        }
     }
 
     private static BigInteger permute(BigInteger bigint) {
